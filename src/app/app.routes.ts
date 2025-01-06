@@ -1,7 +1,11 @@
 import { Routes } from '@angular/router';
-import { authGuard } from "./guards/auth.guard";
-import { afterAuthGuard } from "./guards/after-auth.guard";
-import { roleAdminGuard } from "./guards/role-admin.guard";
+import { authGuard } from "./guards/Auth/auth.guard";
+import { afterAuthGuard } from "./guards/Auth/after-auth.guard";
+import { roleAdminGuard } from "./guards/role/role-admin.guard";
+import {ORGANIZERComponent} from "./component/organizer/organizer.component";
+import {roleOrganizerGuard} from "./guards/role/role-organizer.guard";
+import {UserComponent} from "./component/user/user.component";
+import {roleUserGuard} from "./guards/role/role-user.guard";
 
 export const routes: Routes = [
   {
@@ -21,6 +25,18 @@ export const routes: Routes = [
     loadComponent: () =>
       import('./component/admin/dashboard/dashboard.component').then(m => m.DashboardComponent),
     canActivate: [authGuard, roleAdminGuard]
+  },
+  {
+    path: 'organizer/dashboard',
+    loadComponent: () =>
+      import('./component/organizer/organizer.component').then(m => m.ORGANIZERComponent),
+    canActivate: [authGuard, roleOrganizerGuard]
+  },
+  {
+    path: 'user',
+    loadComponent: () =>
+      import('./component/user/user.component').then(m => m.UserComponent),
+    canActivate: [authGuard, roleUserGuard]
   },
   {
     path: '',

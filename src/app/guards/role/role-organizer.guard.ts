@@ -1,15 +1,15 @@
-import { CanActivateFn, Router } from '@angular/router';
-import { inject } from "@angular/core";
-import { TokenService } from "../service/token.service";
+import {CanActivateFn, Router} from '@angular/router';
+import {inject} from "@angular/core";
+import {TokenService} from "../../service/token.service";
 
-export const roleAdminGuard: CanActivateFn = (route, state) => {
+export const roleOrganizerGuard: CanActivateFn = (route, state) => {
   const tokenService = inject(TokenService);
   const router = inject(Router);
 
   if (tokenService.loggedIn()) {
     const roles = tokenService.getRoles();
 
-    if (roles.includes('ROLE_ADMIN')) {
+    if (roles.includes('ROLE_ORGANIZER')) {
       return true;
     } else {
       window.history.back();
@@ -20,4 +20,3 @@ export const roleAdminGuard: CanActivateFn = (route, state) => {
     return false;
   }
 };
-
