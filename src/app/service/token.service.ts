@@ -5,16 +5,34 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
+  private data : any ;
+  private Roles : String[]  = [] ;
   constructor() { }
 
   set(data: any) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user_id', data.user.userID);
+    this.data = data;
   }
 
   handle(data: any) {
     this.set(data);
   }
+
+  getRoles() {
+    if (this.Roles.length === 0) {
+      const token = this.getToken();
+      if (token) {
+        const payload = this.payload(token);
+        console.log("payload ::"  ,payload)
+        this.Roles = payload.roles || [];
+      }
+    }
+    return this.Roles;
+  }
+
+
+
 
   getToken() {
     return localStorage.getItem('token');

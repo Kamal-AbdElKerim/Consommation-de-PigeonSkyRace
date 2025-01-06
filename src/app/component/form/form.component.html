@@ -18,23 +18,23 @@
       </div>
     }
     <div class="mb-5">
-      <label for="email" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">Email</label>
+      <label for="NomColombie" class="block mb-2 text-sm font-medium text-green-700 dark:text-green-500">NomColombie</label>
       <input
         type="text"
-        id="email"
-        formControlName="email"
+        id="NomColombie"
+        formControlName="nomColombie"
         [ngClass]="{
-          ' border-green-500': email?.valid,
-          ' border-red-500 ': email?.invalid && email?.touched
+          ' border-green-500': nomColombie?.valid,
+          ' border-red-500 ': nomColombie?.invalid && nomColombie?.touched
         }"
         class="border text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5 dark:bg-gray-700"
-        placeholder="test@gmail.com"
+        placeholder="NomColombie"
       />
-      <p *ngIf="email?.valid && email?.touched" class="mt-2 text-sm text-green-600 dark:text-green-500">
-        <span class="font-medium">Alright!</span> Email is valid!
+      <p *ngIf="nomColombie?.valid && nomColombie?.touched" class="mt-2 text-sm text-green-600 dark:text-green-500">
+        <span class="font-medium">Alright!</span> NomColombie is valid!
       </p>
-      <p *ngIf="email?.invalid && email?.touched" class="mt-2 text-sm text-red-600 dark:text-red-500">
-        <span class="font-medium">Oops!</span> Invalid email address.
+      <p *ngIf="nomColombie?.invalid && nomColombie?.touched" class="mt-2 text-sm text-red-600 dark:text-red-500">
+        <span class="font-medium">Oops!</span> Invalid NomColombie.
       </p>
     </div>
 

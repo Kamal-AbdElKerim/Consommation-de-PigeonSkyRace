@@ -34,13 +34,13 @@ export class FormComponent {
               private router: Router,
              ) {
     this.form = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
+      nomColombie: ['', [Validators.required, Validators.minLength(4)]],
       password: ['', [Validators.required]],
     });
   }
 
-  get email() {
-    return this.form.get('email');
+  get nomColombie() {
+    return this.form.get('nomColombie');
   }
 
   get password() {
@@ -51,7 +51,7 @@ export class FormComponent {
     if (this.form.valid) {
       console.log('Form Submitted:', this.form.value);
       this.loginService.login(this.form.value).subscribe({
-        next: (data) => this.handleResponse(data),
+        next: (data) => this.loginService.handleResponse(data),
         error: (err : HttpErrorResponse) => {
           this.errorAuth = err.error?.message ;
           this.form.get('password')?.setValue("") ;
@@ -61,8 +61,8 @@ export class FormComponent {
 
     } else {
       const error = [];
-      if (!this.form.get("email")?.valid){
-        error.push("Invalid email address")
+      if (!this.form.get("nomColombie")?.valid){
+        error.push("Invalid nomColombie address")
       }
       if (!this.form.get("password")?.valid){
         error.push("Invalid password")
@@ -71,11 +71,6 @@ export class FormComponent {
     }
   }
 
-  handleResponse(data : any) {
-    this.tokenService.handle(data)
-    this.accountService.changeStatus(true);
-    this.router.navigate(['/home']);
-    this.errorAuth = "" ;
-  }
+
 
 }

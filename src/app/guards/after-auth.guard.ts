@@ -7,10 +7,9 @@ export const afterAuthGuard: CanActivateFn = (route, state) => {
   const router = inject(Router);
 
   if (tokenService.loggedIn()) {
-    router.navigateByUrl('home')
+    window.history.back();
     return false;
   } else {
-
     return true;
   }
 };
