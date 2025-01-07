@@ -4,9 +4,18 @@
     <a class="btn btn-ghost text-xl">daisyUI</a>
   </div>
   <div class="flex-none gap-2">
+      <div class="flex-none">
+          <ul class="menu menu-horizontal px-1">
+              @if (!currentUser){
+              <li><a routerLink="/register" >Register</a></li>
+              <li><a routerLink="/login" >Login</a></li>
+              }
+          </ul>
+      </div>
     <div class="form-control">
       <input type="text" placeholder="Search" class="input input-bordered w-24 md:w-auto" />
     </div>
+
     @if (currentUser){
     <div class="dropdown dropdown-end">
       <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">

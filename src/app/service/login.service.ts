@@ -11,6 +11,7 @@ import {Router} from "@angular/router";
 })
 export class LoginService {
   private apiUrl = `${API_CONFIG.BASE_URL}/account/login`;
+  private registerUrl = `${API_CONFIG.BASE_URL}/account/register`;
 
 
   constructor(private http: HttpClient ,  private tokenService: TokenService,
@@ -41,5 +42,15 @@ export class LoginService {
         console.log("user")
       }
     }
+  }
+
+  register(formData: {
+    nomColombie: string;
+    password: string;
+    username: string;
+    latitude: number;
+    longitude: number;
+  }): Observable<any> {
+    return this.http.post(this.registerUrl, formData);
   }
 }
