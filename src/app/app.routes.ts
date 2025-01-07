@@ -6,6 +6,7 @@ import {ORGANIZERComponent} from "./component/organizer/organizer.component";
 import {roleOrganizerGuard} from "./guards/role/role-organizer.guard";
 import {UserComponent} from "./component/user/user.component";
 import {roleUserGuard} from "./guards/role/role-user.guard";
+import {RegisterComponent} from "./component/register/register.component";
 
 export const routes: Routes = [
   {
@@ -18,6 +19,12 @@ export const routes: Routes = [
     path: 'login',
     loadComponent: () =>
       import('./component/form/form.component').then(m => m.FormComponent),
+    canActivate: [afterAuthGuard]
+  },
+  {
+    path: 'register',
+    loadComponent: () =>
+      import('./component/register/register.component').then(m => m.RegisterComponent),
     canActivate: [afterAuthGuard]
   },
   {

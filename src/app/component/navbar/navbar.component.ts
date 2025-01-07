@@ -22,6 +22,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.accountService.authStatus.subscribe(authStatus => {
         this.currentUser = this.tokenService.getInfo();
+      console.log(this.currentUser)
     })
   }
 
