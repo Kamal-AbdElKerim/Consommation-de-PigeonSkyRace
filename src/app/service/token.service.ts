@@ -5,14 +5,14 @@ import { Injectable } from '@angular/core';
 })
 export class TokenService {
 
-  private data : any ;
+
   private Roles : String[]  = [] ;
   constructor() { }
 
   set(data: any) {
     localStorage.setItem('token', data.token);
     localStorage.setItem('user_id', data.user.userID);
-    this.data = data;
+    localStorage.setItem('id', data.user.id);
   }
 
   handle(data: any) {
@@ -32,19 +32,25 @@ export class TokenService {
   }
 
 
-
-
   getToken() {
     return localStorage.getItem('token');
   }
 
+  getId() {
+    return localStorage.getItem('id');
+  }
+
   getUserId() {
-    return localStorage.getItem('user_id');
+    const userId = localStorage.getItem('user_id');
+    console.log('Retrieved User ID:', userId);
+    return userId;
   }
 
   removeToken() {
     localStorage.removeItem('token');
     localStorage.removeItem('user_id');
+    localStorage.removeItem('id');
+    this.Roles = [] ;
   }
 
   decode(payload : any) {
