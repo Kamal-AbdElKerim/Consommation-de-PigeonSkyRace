@@ -23,17 +23,22 @@ export class LoginService {
 
   public handleResponse(data: any): void {
     this.tokenService.handle(data);
+    console.log(data)
     this.accountService.changeStatus(true);
     if (data) {
       const roles = data.user.roles || [];
-      const isAdmin = roles.some((role: any) => role.roleName === 'ROLE_ADMIN');
-      const isOrganizer = roles.some((role: any) => role.roleName === 'ROLE_ORGANIZER');
+      let isAdmin = roles.some((role: any) => role.roleName === 'ROLE_ADMIN');
+      let isOrganizer = roles.some((role: any) => role.roleName === 'ROLE_ORGANIZER');
+      let isUser = roles.some((role: any) => role.roleName === 'ROLE_USER');
       if (isAdmin) {
         this.router.navigate(['/admin/dashboard']);
+        console.log("admin")
       } else if(isOrganizer) {
-        this.router.navigate(['/home']);
-      } else {
-        this.router.navigate(['/login']);
+        this.router.navigate(['/organizer/dashboard']);
+        console.log("organizer")
+      } else if(isUser){
+        this.router.navigate(['/user']);
+        console.log("user")
       }
     }
   }
