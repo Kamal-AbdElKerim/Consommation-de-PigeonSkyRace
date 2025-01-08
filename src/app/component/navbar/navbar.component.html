@@ -10,6 +10,12 @@
               <li><a routerLink="/register" >Register</a></li>
               <li><a routerLink="/login" >Login</a></li>
               }
+              @if(currentUser && currentUser.roles?.includes('ROLE_USER')) {
+                  <li><a routerLink="/user" >Pigeon</a></li>
+              }
+              @if(currentUser && currentUser.roles?.includes('ROLE_ORGANIZER')) {
+                  <li><a routerLink="/competition" >competition</a></li>
+              }
           </ul>
       </div>
     <div class="form-control">

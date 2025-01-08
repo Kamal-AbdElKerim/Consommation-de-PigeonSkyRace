@@ -15,10 +15,18 @@ export class PigeonService {
   constructor(private tokenService: TokenService, private router: Router  , private  http: HttpClient) { }
 
 
-  getAllPigeons(): Observable<any> {
-    const authId = this.tokenService.getId();
+  getAllPigeons(is? : number): Observable<any> {
+    let authId ;
+    if (is){
+      authId = is ;
+    }else {
+    authId = this.tokenService.getId();
+
+    }
     return this.http.get(this.apiUrl+'Breeder/'+authId) ;
   }
+
+
 
   addPigeon(data: Pigeon): Observable<any> {
     const authId = this.tokenService.getUserId();
