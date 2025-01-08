@@ -7,6 +7,8 @@ import {roleOrganizerGuard} from "./guards/role/role-organizer.guard";
 import {UserComponent} from "./component/user/user.component";
 import {roleUserGuard} from "./guards/role/role-user.guard";
 import {RegisterComponent} from "./component/register/register.component";
+import {CompetitionComponent} from "./component/competition/competition.component";
+import {PigeonToCompetitionComponent} from "./component/pigeon-to-competition/pigeon-to-competition.component";
 
 export const routes: Routes = [
   {
@@ -37,6 +39,18 @@ export const routes: Routes = [
     path: 'organizer/dashboard',
     loadComponent: () =>
       import('./component/organizer/organizer.component').then(m => m.ORGANIZERComponent),
+    canActivate: [authGuard, roleOrganizerGuard]
+  },
+  {
+    path: 'competition',
+    loadComponent: () =>
+      import('./component/competition/competition.component').then(m => m.CompetitionComponent),
+    canActivate: [authGuard, roleOrganizerGuard]
+  },
+  {
+    path: 'competition/:id',
+    loadComponent: () =>
+      import('./component/pigeon-to-competition/pigeon-to-competition.component').then(m => m.PigeonToCompetitionComponent),
     canActivate: [authGuard, roleOrganizerGuard]
   },
   {
