@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +24,6 @@ export class TokenService {
       const token = this.getToken();
       if (token) {
         const payload = this.payload(token);
-        console.log("payload ::"  ,payload)
         this.Roles = payload.roles || [];
       }
     }
@@ -41,9 +40,7 @@ export class TokenService {
   }
 
   getUserId() {
-    const userId = localStorage.getItem('user_id');
-    console.log('Retrieved User ID:', userId);
-    return userId;
+    return localStorage.getItem('user_id');
   }
 
   removeToken() {
